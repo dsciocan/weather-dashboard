@@ -20,6 +20,27 @@
     background-image: linear-gradient(#01102b, #1f0450, #05235a, #123577)
 }
 
+.weather-header {
+    margin-bottom: 30px;
+}
+
+#search-button {
+    background-color: #1D51B4;
+    color: white;
+    border-radius: 5px;
+    box-shadow: inset  -2px -2px 5px -2px rgb(199, 199, 199);
+}
+
+
+#search-button:hover {
+    box-shadow: 2px 2px 1px grey;
+}
+
+#history {
+    border-top: solid 2px black;
+    padding-top: 10px;
+}
+
 #today {
     border: solid 1px black;
 }
