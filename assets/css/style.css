@@ -1,22 +1,22 @@
 
 /* day */
-.weather-header #day {
+#day {
     background-image: linear-gradient(#1D51B4, #4689F0, #5CBAF0, #B2E4FF, #EEFFFD); 
 }
 
 /* morning */
-.weather-header #morning {
+#morning {
     background-image: linear-gradient(#05235a, #123577, #d2fff477, rgba(255, 249, 169, 0.747), #f7f089da, #fadd5e);
 }
 
 /* evening */
 
-.weather-header #evening{
+#evening{
     background-image: linear-gradient(#082c6e, #2c086ebd, rgba(116, 8, 167, 0.329), rgba(182, 11, 62, 0.514), rgba(180, 6, 15, 0.623), #a73a0fc7, #b9510c);
 }
 
  /* night */
-.weather-header #night{
+#night{
     background-image: linear-gradient(#01102b, #1f0450, #05235a, #123577)
 }
 
@@ -28,7 +28,6 @@
     background-color: #1D51B4;
     color: white;
     border-radius: 5px;
-    box-shadow: inset  -2px -2px 5px -2px rgb(199, 199, 199);
 }
 
 
