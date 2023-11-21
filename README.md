@@ -17,7 +17,9 @@ No installation needed.
 ## Usage
 The page can be accessed through the [following link](https://dsciocan.github.io/weather-dashboard).
 
+To begin, type the name of any city in the search bar and click the "Search" button or press the Enter key. Information about the city will be displayed on the right side of the screen, with current weather on top and a five day forecast for the same timeframe in the bottom section. 
 
+The five most recenly looked up cities will be stored in the "Recently Viewed" tab under the Search bar, and will be saved between page refreshes. Clicking on any of them will once again display the weather information for that specific city. 
 
 
 ## Credits
