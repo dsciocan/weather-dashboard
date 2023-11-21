@@ -22,7 +22,7 @@ var recentTab = $("#history");
 
 //Get search location coordinates 
 function getWeather(inputValue) {
-  var geocodeURL = "http://api.openweathermap.org/geo/1.0/direct?q="  + inputValue + "&limit=1&appid=" + APIKey;
+  var geocodeURL = "https://api.openweathermap.org/geo/1.0/direct?q="  + inputValue + "&limit=1&appid=" + APIKey;
   console.log(geocodeURL)
   fetch(geocodeURL)
   .then(function (response) {
@@ -51,7 +51,7 @@ var fiveDayList;
 
 //Get weather information for specific location and display it to the page
 function showWeather() {
-    var queryURL = "http://api.openweathermap.org/data/2.5/forecast?lat=" + latitude + "&lon=" + longitude + "&appid=" + APIKey;
+    var queryURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + latitude + "&lon=" + longitude + "&appid=" + APIKey;
     fetch(queryURL)
     .then(function (response) {
         return response.json();
