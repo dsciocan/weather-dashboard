@@ -32,7 +32,7 @@
 
 
 #search-button:hover {
-    box-shadow: 2px 2px 1px grey;
+    background-color: #123577;
 }
 
 #history {
@@ -42,17 +42,19 @@
 
 #today {
     border: solid 1px black;
+    padding-left: 15px;
+    padding-bottom: 10px;
 }
 
 #five-day-title {
-    padding-top: 30px;
+    padding-top: 20px;
 }
 
 .card {
-
-    background-color: #01102b;
+    background-color: #05235a;
     color: white;
     border-left: solid 1px #EEFFFD;
     border-right: solid 1px #EEFFFD;
+    margin-top: 10px;
 }
 

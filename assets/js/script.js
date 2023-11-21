@@ -15,14 +15,13 @@
 var APIKey = "1b00349d95f30cc4da6793e8861ce8ed";
 var latitude;
 var longitude;
-var inputValue;
 var today = dayjs().format('DD/MM/YYYY');
 var header = $(".weather-header");
-
+var recent = [];
+var recentTab = $("#history");
 
 //Get search location coordinates 
-function getWeather() {
-  var inputValue = $(".weather-search").val();
+function getWeather(inputValue) {
   var geocodeURL = "http://api.openweathermap.org/geo/1.0/direct?q="  + inputValue + "&limit=1&appid=" + APIKey;
   console.log(geocodeURL)
   fetch(geocodeURL)
@@ -42,8 +41,11 @@ function getWeather() {
 searchButton = $('.search-button');
 searchButton.on('click', function(event) {
     event.preventDefault();
-    getWeather();
+    getWeather($(".weather-search").val());
+    recentlyViewed();
 })
+
+
 
 var fiveDayList;
 
@@ -82,11 +84,11 @@ function showWeather() {
     })
 }
 
-
+// Make cards for the five day forecast 
 var forecast = $("#forecast");
 
 function cardContent(el) {
-    var card = $('<div class="card"></div>');
+    var card = $('<div class="card mx-auto"></div>');
     var cardBody = $("<div>").addClass('card-body');
     var date = $('<h4>').text(dayjs().add(el, "day").format("DD/MM/YYYY"));
     var temperature = $("<p>").text("Temperature: " + (fiveDayList[el].main.temp - 273.15).toFixed(1) + "°C");
@@ -97,6 +99,42 @@ function cardContent(el) {
     card.append(cardBody);
     forecast.append(card);
 }
+
+function recentlyViewed() {
+    recent = JSON.parse(localStorage.getItem("recentSearch"));
+    recentTab.html("");
+    if(recent.length <= 4 && recent.includes($(".weather-search").val()) === false && $(".weather-search").val() != null) {
+        recent.unshift($(".weather-search").val());
+    } else if (recent.length > 4 && recent.includes($(".weather-search").val()) === false && $(".weather-search").val() != null)  {
+        recent.pop();
+        recent.unshift($(".weather-search").val());
+    }
+    localStorage.setItem("recentSearch", JSON.stringify(recent));
+    console.log("Recent: " + recent);
+    for (i=0;i<recent.length;i++){
+        var recentButton = $("<button>").addClass("btn btn-outline-dark recent-button").text(recent[i]);
+        recentTab.append(recentButton);
+    }
+}
+
+
+recentTab.on("click", ".recent-button", function(event) {
+    getWeather($(event.target).text())
+}); 
+//add input values to list
+//make sure the list stays 5 elements long
+//save list elements to local storage
+//get them
+//take each list element, save it to a button 
+//button functionality
+
+
+$(document).ready(function() {
+    recentlyViewed();
+})
+
+
+
 //Change header background based on time of day
 
 function navChange() {
