@@ -44,3 +44,15 @@
     border: solid 1px black;
 }
 
+#five-day-title {
+    padding-top: 30px;
+}
+
+.card {
+
+    background-color: #01102b;
+    color: white;
+    border-left: solid 1px #EEFFFD;
+    border-right: solid 1px #EEFFFD;
+}
+

@@ -19,6 +19,8 @@ var inputValue;
 var today = dayjs().format('DD/MM/YYYY');
 var header = $(".weather-header");
 
+
+//Get search location coordinates 
 function getWeather() {
   var inputValue = $(".weather-search").val();
   var geocodeURL = "http://api.openweathermap.org/geo/1.0/direct?q="  + inputValue + "&limit=1&appid=" + APIKey;
@@ -43,6 +45,9 @@ searchButton.on('click', function(event) {
     getWeather();
 })
 
+var fiveDayList;
+
+//Get weather information for specific location and display it to the page
 function showWeather() {
     var queryURL = "http://api.openweathermap.org/data/2.5/forecast?lat=" + latitude + "&lon=" + longitude + "&appid=" + APIKey;
     fetch(queryURL)
@@ -65,8 +70,34 @@ function showWeather() {
         var windSpeed = $("<h5>").text("Wind speed: " + data.list[0].wind.speed + "m/s");
         // The wind speed
         todaySection.append(cityName, temperature, humidity, windSpeed);
+        fiveDayList = [];
+        for (i=0; i<data.list.length; i+=8) {
+            fiveDayList.push(data.list[i]);
+        }
+        console.log(fiveDayList);
+        forecast.html("");
+        for(j=0; j<fiveDayList.length;j++) {
+            cardContent(j);
+        }
     })
 }
+
+
+var forecast = $("#forecast");
+
+function cardContent(el) {
+    var card = $('<div class="card"></div>');
+    var cardBody = $("<div>").addClass('card-body');
+    var date = $('<h4>').text(dayjs().add(el, "day").format("DD/MM/YYYY"));
+    var temperature = $("<p>").text("Temperature: " + (fiveDayList[el].main.temp - 273.15).toFixed(1) + "°C");
+    var icon =$("<img>").attr("src", "https://openweathermap.org/img/wn/" + fiveDayList[el].weather[0].icon + "@2x.png")
+    var humidity = $("<p>").text("Humidity: " + fiveDayList[el].main.humidity + "%");
+    var windSpeed = $("<p>").text("Wind speed: " + fiveDayList[el].wind.speed + "m/s");
+    cardBody.append(date, icon, temperature, humidity, windSpeed);
+    card.append(cardBody);
+    forecast.append(card);
+}
+//Change header background based on time of day
 
 function navChange() {
     var timeNow = dayjs().format("HH");
