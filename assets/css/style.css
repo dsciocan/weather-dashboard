@@ -53,8 +53,10 @@
 .card {
     background-color: #05235a;
     color: white;
-    border-left: solid 1px #EEFFFD;
-    border-right: solid 1px #EEFFFD;
+    margin-top: 10px;
+}
+
+.recent-button {
     margin-top: 10px;
 }
 

@@ -17,7 +17,7 @@ var latitude;
 var longitude;
 var today = dayjs().format('DD/MM/YYYY');
 var header = $(".weather-header");
-var recent = [];
+var recent;
 var recentTab = $("#history");
 
 //Get search location coordinates 
@@ -101,8 +101,8 @@ function cardContent(el) {
 }
 
 function recentlyViewed() {
-    recent = JSON.parse(localStorage.getItem("recentSearch"));
     recentTab.html("");
+    recent = JSON.parse(localStorage.getItem("recentSearch")) || [];
     if(recent.length <= 4 && recent.includes($(".weather-search").val()) === false && $(".weather-search").val() != null) {
         recent.unshift($(".weather-search").val());
     } else if (recent.length > 4 && recent.includes($(".weather-search").val()) === false && $(".weather-search").val() != null)  {
@@ -112,25 +112,26 @@ function recentlyViewed() {
     localStorage.setItem("recentSearch", JSON.stringify(recent));
     console.log("Recent: " + recent);
     for (i=0;i<recent.length;i++){
+        if(recent[i] != "") {
         var recentButton = $("<button>").addClass("btn btn-outline-dark recent-button").text(recent[i]);
         recentTab.append(recentButton);
+    }
     }
 }
 
 
+//Show Weather when clicking a recent search
 recentTab.on("click", ".recent-button", function(event) {
     getWeather($(event.target).text())
 }); 
-//add input values to list
-//make sure the list stays 5 elements long
-//save list elements to local storage
-//get them
-//take each list element, save it to a button 
-//button functionality
 
 
+//Load recent buttons on page load
 $(document).ready(function() {
+    JSON.parse(localStorage.getItem("recentSearch"));
+    if(recent != []) {
     recentlyViewed();
+}
 })
 
 
