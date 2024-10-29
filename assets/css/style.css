@@ -24,10 +24,12 @@
     margin-bottom: 30px;
 }
 
+
 #search-button {
     background-color: #1D51B4;
     color: white;
-    border-radius: 5px;
+    border-radius: 3px;
+    margin-left: 5px;
 }
 
 
@@ -38,12 +40,14 @@
 #history {
     border-top: solid 2px black;
     padding-top: 10px;
+    border-radius: 2px;
 }
 
 #today {
     border: solid 1px black;
     padding-left: 15px;
     padding-bottom: 10px;
+    border-radius: 3px;
 }
 
 #five-day-title {
@@ -51,9 +55,10 @@
 }
 
 .card {
-    background-color: #05235a;
+    background-color:  #153675;
     color: white;
     margin-top: 10px;
+    border: solid 2px #05235a;
 }
 
 .recent-button {

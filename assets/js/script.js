@@ -1,4 +1,4 @@
-var APIKey = "1b00349d95f30cc4da6793e8861ce8ed";
+var APIKey = "0197cf67ab7a13595738a77d2d43edd2";
 var latitude;
 var longitude;
 var today = dayjs().format('DD/MM/YYYY');
